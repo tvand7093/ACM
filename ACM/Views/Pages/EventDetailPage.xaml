@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:vms="clr-namespace:ACM.ViewModels;assembly=ACM"
+	x:Class="ACM.Views.Pages.EventDetailPage" Title="Event Details">
+	<ContentPage.Content>
+		<ScrollView Padding="10">
+			<StackLayout Spacing="10">
+				<Label Text="{Binding DataSource.Topic}" 
+					HorizontalOptions="CenterAndExpand"  VerticalOptions="Fill"
+				 	FontSize="20"/>
+				 <Frame VerticalOptions="Fill">
+				 	<StackLayout>
+				 		<Image Source="{Binding DataSource.Speaker.Picture}"
+				 			HeightRequest="100" WidthRequest="100"
+				 			HorizontalOptions="CenterAndExpand" />
+					 	<Label Text="{Binding DataSource.Speaker.Name, StringFormat='Presented By: {0}'}"
+					 	 	HorizontalOptions="CenterAndExpand"/>
+					 	<Label Text="{Binding DataSource.Speaker.JobTitle, StringFormat='Title: {0}'}"
+					 		HorizontalOptions="CenterAndExpand" />
+					 	<Label Text="{Binding DataSource.Speaker.Twitter, StringFormat='Twitter: @{0}'}"
+					 		HorizontalOptions="CenterAndExpand"/>
+					 </StackLayout>
+				 </Frame>
+				<Label Text="{Binding DataSource.Description}" FontSize="15"
+					HorizontalOptions="Center"  VerticalOptions="FillAndExpand"/>
+			</StackLayout>
+		</ScrollView>
+
+	</ContentPage.Content>
+</ContentPage>

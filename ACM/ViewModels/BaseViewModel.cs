@@ -4,7 +4,8 @@ using Xamarin.Forms;
 
 namespace ACM
 {
-	public abstract class BaseViewModel : INotifyPropertyChanged
+
+	public abstract class BaseViewModel : INotifyPropertyChanged 
 	{
 		public bool IsBusy {
 			get { return Application.Current.MainPage.IsBusy; }
@@ -38,6 +39,19 @@ namespace ACM
 		}
 
 		#endregion
+	}
+
+	public abstract class BaseViewModel<T> : BaseViewModel where T : class
+	{
+		
+		private T dataSource;
+		public T DataSource {
+			get { return dataSource; }
+			set {
+				dataSource = value;
+				OnPropertyChanged ("DataSource");
+			}
+		}
 	}
 }
 

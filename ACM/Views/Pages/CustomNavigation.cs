@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using ACM.Interfaces;
+using ACM.Views.Themes;
 
 namespace ACM.Views.Pages
 {
@@ -15,6 +16,8 @@ namespace ACM.Views.Pages
 
 			HandleNavigation (content, false);
 			Icon = content.Icon;
+			BarBackgroundColor = ColorThemes.CougarRed;
+			BarTextColor = ColorThemes.CougarWhite;
 		}
 
 		private void HandleNavigation(Page page, bool isPopping){

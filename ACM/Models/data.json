@@ -7,7 +7,8 @@
 				"name": "Tyler Vanderhoef",
 				"company": "Xamarin",
 				"title": "Xamarin Student Ambassador",
-				"twitter": "@sonoilmedico"
+				"twitter": "sonoilmedico",
+				"pic": "http://www.gravatar.com/avatar/f24777df33c08e6ffd6ef6bc0d4b2619.png"
 			},
 			"description": "An introduction into cross platform development using C# and the Xamarin platform.",
 			"location": "VECS 104",
@@ -18,11 +19,13 @@
 	"members": [
 		{
 			"name": "Elijah Houle",
-			"role": "President"
+			"role": "President",
+			"pic": "http://xamarin.com/images/index/ide-xamarin-studio.png"
 		},
 		{
 			"name": "Kyle Nosar",
-			"role": "Vice President"
+			"role": "Vice President",
+			"pic": "http://xamarin.com/images/index/ide-xamarin-studio.png"
 		}
 	]
 }

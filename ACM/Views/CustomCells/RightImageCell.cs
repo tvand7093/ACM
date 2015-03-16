@@ -3,10 +3,11 @@ using Xamarin.Forms;
 
 namespace ACM.Views.CustomCells
 {
-	public class RightTextCell : TextCell
+	public class RightImageCell : ImageCell
 	{
-		public RightTextCell ()
+		public RightImageCell ()
 		{
+			
 		}
 	}
 }
