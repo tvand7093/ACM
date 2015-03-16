@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="iOS/ACM.iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6.8.2" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ACM/ViewModels/EventsViewModel.cs">
+    <Files>
+      <File FileName="iOS/AppDelegate.cs" Line="19" Column="1" />
+      <File FileName="ACM/Views/Pages/MembersPage.xaml" Line="5" Column="34" />
+      <File FileName="ACM/Models/Member.cs" Line="11" Column="8" />
+      <File FileName="ACM/Models/Event.cs" Line="45" Column="27" />
+      <File FileName="ACM/Views/Pages/EventsPage.xaml" Line="22" Column="1" />
+      <File FileName="ACM/ViewModels/EventsViewModel.cs" Line="24" Column="62" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -4,6 +4,14 @@
 *.obj
 *.elf
 
+#packages
+[Pp]ackages
+[Bb]in
+[Rr]elease
+[Oo]bj
+*.suo
+*.vs
+
 # Precompiled Headers
 *.gch
 *.pch

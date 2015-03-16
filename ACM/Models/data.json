@@ -1,0 +1,28 @@
+﻿
+{
+	"events": [
+		{
+			"topic": "Intro to Cross Platform Development",
+			"speaker": {
+				"name": "Tyler Vanderhoef",
+				"company": "Xamarin",
+				"title": "Xamarin Student Ambassador",
+				"twitter": "@sonoilmedico"
+			},
+			"description": "An introduction into cross platform development using C# and the Xamarin platform.",
+			"location": "VECS 104",
+			"start": "3/24/2015 2:30:00 pm",
+			"end": "3/24/2015 3:30 pm"
+		}
+	],
+	"members": [
+		{
+			"name": "Elijah Houle",
+			"role": "President"
+		},
+		{
+			"name": "Kyle Nosar",
+			"role": "Vice President"
+		}
+	]
+}

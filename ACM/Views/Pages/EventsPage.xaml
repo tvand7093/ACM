@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="ACM.Views.Pages.EventsPage"
+	xmlns:vms="clr-namespace:ACM.ViewModels;assembly=ACM"
+	xmlns:cells="clr-namespace:ACM.Views.CustomCells;assembly=ACM"
+	Title="Events" Icon="Favorites.png">
+	<ContentPage.BindingContext>
+		<vms:EventsViewModel />
+	</ContentPage.BindingContext>
+	<ContentPage.Content>
+		<ListView ItemsSource="{Binding Items}" SeparatorColor="Gray" 
+			SelectedItem="{Binding SelectedItem}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<cells:RightTextCell Text="{Binding Topic}" Detail="{Binding InfoString}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</ContentPage.Content>
+</ContentPage>
