@@ -2,28 +2,59 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:vms="clr-namespace:ACM.ViewModels;assembly=ACM"
+	xmlns:theme="clr-namespace:ACM.Views.Themes;assembly=ACM"
 	x:Class="ACM.Views.Pages.EventDetailPage" Title="Event Details">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label">
+		        <Setter Property="TextColor" Value="White" />
+	        </Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<ContentPage.Content>
-		<ScrollView Padding="10">
-			<StackLayout Spacing="10">
+		<ScrollView Padding="10" BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarGrey}}">
+			<StackLayout Spacing="20">
 				<Label Text="{Binding DataSource.Topic}" 
 					HorizontalOptions="CenterAndExpand"  VerticalOptions="Fill"
 				 	FontSize="20"/>
-				 <Frame VerticalOptions="Fill">
-				 	<StackLayout>
-				 		<Image Source="{Binding DataSource.Speaker.Picture}"
+				<Frame VerticalOptions="Fill" BindingContext="{Binding DataSource}"
+					BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarBlue}}">
+					<StackLayout BindingContext="{Binding Speaker}">
+				 		<Image Source="{Binding Picture}"
 				 			HeightRequest="100" WidthRequest="100"
 				 			HorizontalOptions="CenterAndExpand" />
-					 	<Label Text="{Binding DataSource.Speaker.Name, StringFormat='Presented By: {0}'}"
+					 	<Label Text="{Binding Name, StringFormat='Presented By: {0}'}"
 					 	 	HorizontalOptions="CenterAndExpand"/>
-					 	<Label Text="{Binding DataSource.Speaker.JobTitle, StringFormat='Title: {0}'}"
+					 	<Label Text="{Binding JobTitle, StringFormat='Title: {0}'}"
 					 		HorizontalOptions="CenterAndExpand" />
-					 	<Label Text="{Binding DataSource.Speaker.Twitter, StringFormat='Twitter: @{0}'}"
+					 	<Label Text="{Binding Twitter, StringFormat='Twitter: @{0}'}"
 					 		HorizontalOptions="CenterAndExpand"/>
 					 </StackLayout>
 				 </Frame>
-				<Label Text="{Binding DataSource.Description}" FontSize="15"
-					HorizontalOptions="Center"  VerticalOptions="FillAndExpand"/>
+
+				<StackLayout Spacing="5">
+					<StackLayout Orientation="Horizontal">
+						<Label Text="{Binding DataSource.StartTime, StringFormat='{}On: {0:d}'}" 
+							HorizontalOptions="CenterAndExpand"  VerticalOptions="Fill"
+						 	FontSize="15"/>
+						<Label Text="{Binding DataSource.Location, StringFormat='{}Location: {0:d}'}" 
+							HorizontalOptions="CenterAndExpand"  VerticalOptions="Fill"
+						 	FontSize="15"/>
+				 	</StackLayout>
+					 <StackLayout Orientation="Horizontal">
+					 	<Label Text="{Binding DataSource.StartTime, StringFormat='{}Begins: {0:t}'}"
+					 		HorizontalOptions="CenterAndExpand" FontSize="15"/>
+					 	<Label Text="{Binding DataSource.EndTime, StringFormat='{}Ends: {0:t}'}" 
+					 		HorizontalOptions="CenterAndExpand" FontSize="15" />
+					 </StackLayout>
+				</StackLayout>
+
+
+
+				 <Label Text="{Binding DataSource.Description}"
+					HorizontalOptions="CenterAndExpand"  VerticalOptions="FillAndExpand"/>
+				<Button Text="Add Event To Calendar" HorizontalOptions="CenterAndExpand"
+					Command="{Binding AddToCalendarCommand}" TextColor="#f6861f"/>
 			</StackLayout>
 		</ScrollView>
 

@@ -4,16 +4,21 @@
   	x:Class="ACM.Views.Pages.MembersPage"
   	xmlns:cells="clr-namespace:ACM.Views.CustomCells;assembly=ACM"
   	xmlns:vms="clr-namespace:ACM.ViewModels;assembly=ACM"
+  	xmlns:pages="clr-namespace:ACM.Views.Pages;assembly=ACM"
+  	xmlns:theme="clr-namespace:ACM.Views.Themes;assembly=ACM"
   	Title="Members" Icon="Contacts.png">
 	<ContentPage.BindingContext>
 		<vms:MembersViewModel />
 	</ContentPage.BindingContext>
 	<ContentPage.Content>
-		<ListView ItemsSource="{Binding Items}" SeparatorColor="Gray" 
-			SelectedItem="{Binding SelectedItem}">
+		<ListView ItemsSource="{Binding Items}" SeparatorColor="White" 
+			SelectedItem="{Binding SelectedItem}" 
+			BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarGrey}}" >
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<cells:RightImageCell ImageSource="{Binding Picture}" 
+						TextColor="{Binding Source={x:Static theme:ColorThemes.CougarWhite}}"
+						DetailColor="{Binding Source={x:Static theme:ColorThemes.CougarWhite}}"
 						Text="{Binding Name}" Detail="{Binding Role}"/>
 				</DataTemplate>
 			</ListView.ItemTemplate>

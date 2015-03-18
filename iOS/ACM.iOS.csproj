@@ -48,6 +48,10 @@
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+    <CodesignProvision>d6203575-b4eb-49ff-94d3-c6ef2d6a12c6</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -141,7 +145,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\RightTextCellRenderer.cs" />
     <Compile Include="Renderers\RightImageCellRenderer.cs" />
-    <Compile Include="Renderers\CustomListViewRenderer.cs" />
+    <Compile Include="Interop\CalendarService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />
@@ -151,5 +155,6 @@
   <Import Project="..\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
     <Folder Include="Renderers\" />
+    <Folder Include="Interop\" />
   </ItemGroup>
 </Project>
