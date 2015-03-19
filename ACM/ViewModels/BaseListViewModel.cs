@@ -31,7 +31,20 @@ namespace ACM
 			}
 		}
 
+		public bool isRefreshing;
+		public bool IsRefreshing {
+			get { return isRefreshing; }
+			set {
+				isRefreshing = value;
+				if (App.Current.MainPage != null)
+					IsBusy = value;
+				
+				OnPropertyChanged ("IsRefreshing");
+			}
+		}
+
 		public ICommand SelectionChangedCommand { get; protected set; }
+		public ICommand PullToRefreshCommand { get; protected set; }
 
 		public BaseListViewModel ()
 		{

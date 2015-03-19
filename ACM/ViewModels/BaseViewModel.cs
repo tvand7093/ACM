@@ -8,8 +8,12 @@ namespace ACM
 	public abstract class BaseViewModel : INotifyPropertyChanged 
 	{
 		public bool IsBusy {
-			get { return Application.Current.MainPage.IsBusy; }
-			set { Application.Current.MainPage.IsBusy = value; }
+			get { 
+				return Application.Current.MainPage.IsBusy;
+			}
+			set { 
+				Application.Current.MainPage.IsBusy = value;
+			}
 		}
 
 		public INavigation Navigation {

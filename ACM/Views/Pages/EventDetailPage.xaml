@@ -49,8 +49,6 @@
 					 </StackLayout>
 				</StackLayout>
 
-
-
 				 <Label Text="{Binding DataSource.Description}"
 					HorizontalOptions="CenterAndExpand"  VerticalOptions="FillAndExpand"/>
 				<Button Text="Add Event To Calendar" HorizontalOptions="CenterAndExpand"

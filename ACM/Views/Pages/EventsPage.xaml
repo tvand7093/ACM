@@ -10,9 +10,17 @@
 	<ContentPage.BindingContext>
 		<vms:EventsViewModel />
 	</ContentPage.BindingContext>
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style TargetType="ActivityIndicator">
+		        <Setter Property="Color" Value="White" />
+	        </Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<ContentPage.Content>
-		<ListView ItemsSource="{Binding Items}" SeparatorColor="White" 
-			SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+		<ListView ItemsSource="{Binding Items}" SeparatorColor="White"
+			SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsPullToRefreshEnabled="true"
+			RefreshCommand="{Binding PullToRefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
 			BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarGrey}}">
 			<ListView.ItemTemplate>
 				<DataTemplate>

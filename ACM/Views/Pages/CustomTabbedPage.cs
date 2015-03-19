@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using ACM.Services;
 
 namespace ACM.Views.Pages
 {
@@ -10,7 +9,6 @@ namespace ACM.Views.Pages
 		{
 			Children.Add (new CustomNavigation (new EventsPage ()));
 			Children.Add (new CustomNavigation (new MembersPage ()));
-			DataService.FetchData();
 		}
 	}
 }

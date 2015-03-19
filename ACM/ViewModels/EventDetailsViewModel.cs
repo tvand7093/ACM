@@ -3,6 +3,7 @@ using ACM.Models;
 using System.Windows.Input;
 using Xamarin.Forms;
 using ACM.Interfaces;
+using ACM.Azure;
 
 namespace ACM.ViewModels
 {

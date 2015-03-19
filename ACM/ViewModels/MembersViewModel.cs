@@ -3,6 +3,8 @@
 using Xamarin.Forms;
 using ACM.Interfaces;
 using ACM.Models;
+using System.Collections.Generic;
+using ACM.Azure;
 
 namespace ACM.ViewModels
 {
@@ -15,28 +17,38 @@ namespace ACM.ViewModels
 
 		public void Subscribe ()
 		{
-			MessagingCenter.Subscribe<AllData> (this, DataMessage,
+			MessagingCenter.Subscribe<IEnumerable<Member>> (this, DataMessage,
 				(data) => {
+					IsRefreshing = false;
 					Items.Clear();
-					Items.Add(data.Members);
+					Items.Add(data);
 				});
 		}
 
 		public void Unsubscribe ()
 		{
-			MessagingCenter.Unsubscribe<AllData> (this, DataMessage);
+			MessagingCenter.Unsubscribe<IEnumerable<Member>> (this, DataMessage);
 		}
 
 		#endregion
 
+		private void FetchData() {
+			IsRefreshing = true;
+			AzureRepo.GetMembersList (DataMessage);
+		}
+
 		public MembersViewModel ()
 		{
+			PullToRefreshCommand = new Command (FetchData);
+
 			SelectionChangedCommand = new Command(() => {
 				// Analysis disable once RedundantCheckBeforeAssignment
 				if(SelectedItem != null){
 					SelectedItem = null;
 				}
 			});
+
+			FetchData ();
 		}
 	}
 }

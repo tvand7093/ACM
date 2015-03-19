@@ -12,7 +12,8 @@
 	</ContentPage.BindingContext>
 	<ContentPage.Content>
 		<ListView ItemsSource="{Binding Items}" SeparatorColor="White" 
-			SelectedItem="{Binding SelectedItem}" 
+			SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsPullToRefreshEnabled="true"
+			RefreshCommand="{Binding PullToRefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
 			BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarGrey}}" >
 			<ListView.ItemTemplate>
 				<DataTemplate>

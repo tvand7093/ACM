@@ -1,16 +1,26 @@
 ﻿using System;
 using Newtonsoft.Json;
+using ACM.Interfaces;
 
 namespace ACM.Models
 {
 	[JsonObject]
-	public class Event
+	public class Event : IAzureObject
 	{
+		[JsonProperty("id")]
+		public string Id {
+			get;
+			set;
+		}
+
 		[JsonProperty("description")]
 		public string Description {
 			get;
 			set;
 		}
+
+		[JsonProperty("speakerId")]
+		public string SpeakerId {get;set;}
 
 		[JsonProperty("speaker")]
 		public GuestSpeaker Speaker {

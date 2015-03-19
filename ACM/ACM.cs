@@ -1,8 +1,8 @@
 ﻿using System;
 
 using Xamarin.Forms;
-using ACM.Services;
 using ACM.Views.Pages;
+using ACM.Azure;
 
 namespace ACM
 {
@@ -22,6 +22,7 @@ namespace ACM
 		protected override void OnSleep ()
 		{
 			// Handle when your app sleeps
+			AzureRepo.Clear();
 		}
 
 		protected override void OnResume ()
