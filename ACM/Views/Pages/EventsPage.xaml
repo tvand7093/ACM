@@ -18,7 +18,7 @@
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
-		<ListView ItemsSource="{Binding Items}" SeparatorColor="White"
+		<pages:CustomListView ItemsSource="{Binding Items}" SeparatorColor="White"
 			SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsPullToRefreshEnabled="true"
 			RefreshCommand="{Binding PullToRefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
 			BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarGrey}}">
@@ -30,6 +30,6 @@
 					 	Detail="{Binding InfoString}" />
 				</DataTemplate>
 			</ListView.ItemTemplate>
-		</ListView>
+		</pages:CustomListView>
 	</ContentPage.Content>
 </ContentPage>

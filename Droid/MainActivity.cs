@@ -7,6 +7,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace ACM.Droid
 {
@@ -16,6 +17,8 @@ namespace ACM.Droid
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+			CurrentPlatform.Init ();
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 

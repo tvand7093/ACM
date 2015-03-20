@@ -1,8 +1,11 @@
 ﻿<Properties StartupItem="iOS/ACM.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Dev Device" />
   <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Interop/CalendarService.cs">
     <Files>
-      <File FileName="iOS/Interop/CalendarService.cs" Line="55" Column="42" />
+      <File FileName="iOS/Interop/CalendarService.cs" Line="13" Column="2" />
+      <File FileName="ACM/ViewModels/EventDetailsViewModel.cs" Line="18" Column="1" />
+      <File FileName="ACM/Views/Pages/EventDetailPage.xaml" Line="17" Column="20" />
+      <File FileName="ACM/Views/Pages/EventsPage.xaml" Line="25" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

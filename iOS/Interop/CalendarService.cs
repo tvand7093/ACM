@@ -13,19 +13,16 @@ namespace ACM.iOS.Interop
 {
 	public class CalendarService : ICalendar
 	{
-		private static EKEventStore eventStore;
+		private static readonly EKEventStore eventStore;
 		public static EKEventStore EventStore {
 			get { return eventStore; }
 		}
-
-
-
+			
 		#region ICalendar implementation
 
 		private NSDate ConvertDate(DateTime toConvert){
 			DateTime reference = TimeZone.CurrentTimeZone.ToLocalTime(
 				new DateTime(2001, 1, 1, 0, 0, 0) );
-
 
 			if (toConvert.IsDaylightSavingTime ()) {
 				toConvert = toConvert.AddHours (-1);
@@ -44,6 +41,7 @@ namespace ACM.iOS.Interop
 			newEvent.EndDate = ConvertDate(toAdd.EndTime);
 			newEvent.Title = toAdd.Topic;
 			newEvent.Notes = toAdd.Description;
+			newEvent.Location = toAdd.Location;
 			newEvent.Calendar = EventStore.DefaultCalendarForNewEvents;
 
 			NSError e;
@@ -53,7 +51,7 @@ namespace ACM.iOS.Interop
 					// Analysis disable once ConvertToLambdaExpression
 					new UIAlertView ("Event Created", 
 						"This event was added to you calendar.", null,
-						"ok", null).Show ();
+						"Ok", null).Show ();
 				});
 			}
 		}
@@ -63,7 +61,6 @@ namespace ACM.iOS.Interop
 			EventStore.RequestAccess (EKEntityType.Event, 
 				(bool granted, NSError e) => {
 					if (granted){
-						//do something here
 						SetNewEvent(toAdd); 
 					}
 					else {

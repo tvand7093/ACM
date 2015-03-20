@@ -12,12 +12,12 @@
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
-		<ScrollView Padding="10" BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarGrey}}">
-			<StackLayout Spacing="20">
+		<ScrollView Padding="5" BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarGrey}}">
+			<StackLayout Spacing="20" HorizontalOptions="FillAndExpand">
 				<Label Text="{Binding DataSource.Topic}" 
-					HorizontalOptions="CenterAndExpand"  VerticalOptions="Fill"
+					HorizontalOptions="CenterAndExpand" VerticalOptions="Fill"
 				 	FontSize="20"/>
-				<Frame VerticalOptions="Fill" BindingContext="{Binding DataSource}"
+				<Frame VerticalOptions="Fill" HorizontalOptions="Center" Padding="5" BindingContext="{Binding DataSource}"
 					BackgroundColor="{Binding Source={x:Static theme:ColorThemes.CougarBlue}}">
 					<StackLayout BindingContext="{Binding Speaker}">
 				 		<Image Source="{Binding Picture}"
@@ -32,7 +32,7 @@
 					 </StackLayout>
 				 </Frame>
 
-				<StackLayout Spacing="5">
+				<StackLayout Spacing="5" HorizontalOptions="FillAndExpand">
 					<StackLayout Orientation="Horizontal">
 						<Label Text="{Binding DataSource.StartTime, StringFormat='{}On: {0:d}'}" 
 							HorizontalOptions="CenterAndExpand"  VerticalOptions="Fill"
@@ -50,9 +50,23 @@
 				</StackLayout>
 
 				 <Label Text="{Binding DataSource.Description}"
-					HorizontalOptions="CenterAndExpand"  VerticalOptions="FillAndExpand"/>
-				<Button Text="Add Event To Calendar" HorizontalOptions="CenterAndExpand"
-					Command="{Binding AddToCalendarCommand}" TextColor="#f6861f"/>
+					HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"/>
+				<Button BorderWidth="1"
+					Text="Add Event To Calendar" HorizontalOptions="FillAndExpand"
+					Command="{Binding AddToCalendarCommand}">
+					<Button.BorderColor>
+						<OnPlatform x:TypeArguments="Color"
+							iOS="{x:Static theme:ColorThemes.CougarBlue}"></OnPlatform>
+					</Button.BorderColor>
+					<Button.TextColor>
+						<OnPlatform x:TypeArguments="Color"
+							iOS="{x:Static theme:ColorThemes.CougarWhite}"></OnPlatform>
+					</Button.TextColor>
+					<Button.BackgroundColor>
+						<OnPlatform x:TypeArguments="Color"
+							iOS="{x:Static theme:ColorThemes.CougarOrange}"></OnPlatform>
+					</Button.BackgroundColor>
+				</Button>
 			</StackLayout>
 		</ScrollView>
 
