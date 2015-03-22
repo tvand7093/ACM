@@ -7,9 +7,6 @@
 	xmlns:theme="clr-namespace:ACM.Views.Themes;assembly=ACM"
 	xmlns:cells="clr-namespace:ACM.Views.CustomCells;assembly=ACM"
 	Title="Events" Icon="Favorites.png">
-	<ContentPage.BindingContext>
-		<vms:EventsViewModel />
-	</ContentPage.BindingContext>
 	<ContentPage.Resources>
 		<ResourceDictionary>
 			<Style TargetType="ActivityIndicator">

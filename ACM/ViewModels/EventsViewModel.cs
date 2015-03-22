@@ -38,6 +38,10 @@ namespace ACM.ViewModels
 			AzureRepo.GetEventsList (DataMessage);
 		}
 
+		public void Loaded(object sender, EventArgs args) {
+			FetchData ();
+		}
+
 		public EventsViewModel ()
 		{
 			PullToRefreshCommand = new Command (FetchData);
@@ -51,7 +55,6 @@ namespace ACM.ViewModels
 					SelectedItem = null;
 				}
 			});
-			FetchData ();
 		}
 	}
 }

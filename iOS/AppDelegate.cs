@@ -15,7 +15,7 @@ namespace ACM.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
 			CurrentPlatform.Init ();
-
+			app.SetStatusBarStyle (UIStatusBarStyle.LightContent, false);
 			LoadApplication (new App ());
 			return base.FinishedLaunching (app, options);
 		}

@@ -37,6 +37,10 @@ namespace ACM.ViewModels
 			AzureRepo.GetMembersList (DataMessage);
 		}
 
+		public void Loaded(object sender, EventArgs args) {
+			FetchData ();
+		}
+
 		public MembersViewModel ()
 		{
 			PullToRefreshCommand = new Command (FetchData);

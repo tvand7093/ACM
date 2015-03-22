@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using ACM.ViewModels;
 
 namespace ACM.Views.Pages
 {
