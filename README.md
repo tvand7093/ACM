@@ -7,5 +7,5 @@ The master branch only serves as an index page for the other pages. It also hold
 - ACM Official App
    - This app is the official app for displaying the current people involved in ACM. In the future this may also show events that the group is holding.
 
-- AAM (App a Month) [CSAssistant](/branch/AAM-CSAssistant.git)
+- AAM (App a Month) [CSAssistant](https://github.com/tvand7093/ACM/tree/AAM-CSAssistant)
   - This app is the first one of the App A Month event.
