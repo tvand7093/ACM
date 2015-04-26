@@ -1,0 +1,28 @@
+﻿<Properties StartupItem="iOS/CSAssistant.iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone di Tyler Vanderhoef" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CSAssistant/Pages/RootTabs.cs">
+    <Files>
+      <File FileName="CSAssistant/Pages/ProfessorHomePage.xaml" Line="6" Column="41" />
+      <File FileName="CSAssistant/Services/CourseService.cs" Line="64" Column="5" />
+      <File FileName="CSAssistant/ViewModels/ProfessorHomePageVM.cs" Line="37" Column="38" />
+      <File FileName="CSAssistant/ViewModels/BaseViewModel.cs" Line="25" Column="47" />
+      <File FileName="CSAssistant/Pages/RootTabs.cs" Line="20" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/tylervanderhoef/Documents/Github/ACM/CSAssistant/CSAssistant/Services/ClassService.cs" line="39" column="1" />
+      <Breakpoint file="/Users/tylervanderhoef/Documents/Github/ACM/CSAssistant/CSAssistant/Services/ClassService.cs" line="32" column="1" />
+      <Breakpoint file="/Users/tylervanderhoef/Documents/Github/ACM/CSAssistant/CSAssistant/Services/ClassService.cs" line="35" column="1" />
+      <Breakpoint file="/Users/tylervanderhoef/Documents/Github/ACM/CSAssistant/CSAssistant/Services/ClassService.cs" line="34" column="1" />
+      <Breakpoint file="/Users/tylervanderhoef/Documents/Github/ACM/CSAssistant/CSAssistant/Services/ClassService.cs" line="37" column="1" />
+      <Breakpoint file="/Users/tylervanderhoef/Documents/Github/ACM/CSAssistant/CSAssistant/Services/ClassService.cs" line="30" column="1" />
+      <Breakpoint file="/Users/tylervanderhoef/Documents/Github/ACM/CSAssistant/CSAssistant/Pages/SubscriberNavigationPage.cs" line="12" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="CSAssistant/Services/CourseService.cs" line="29" offsetX="551" offsetY="420" expression="assignments" liveUpdate="False" />
+    <Watch file="CSAssistant/Pages/DocumentView.cs" line="14" offsetX="327" offsetY="195" expression="toShow" liveUpdate="False" />
+    <Watch file="CSAssistant/Services/CourseService.cs" line="53" offsetX="602" offsetY="780" expression="current" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>
