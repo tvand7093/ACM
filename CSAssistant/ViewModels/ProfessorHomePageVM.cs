@@ -10,7 +10,7 @@ using CSAssistant.Pages;
 
 namespace CSAssistant.ViewModels
 {
-	public class ProfessorHomePageVM : BaseViewModel, ISubscriber
+	internal sealed class ProfessorHomePageVM : BaseViewModel, ISubscriber
 	{
 		public ObservableCollection<Course> Courses { get; set; }
 		public string Title {get;set;}
@@ -87,7 +87,7 @@ namespace CSAssistant.ViewModels
 		{
 			MessagingCenter.Subscribe<ProfessorHomePageVM> (this, UpdateMessage, Reload);
 			MessagingCenter.Subscribe<Course> (this, PushMessage, async (toPush) => {
-				await Navigation.PushAsync(new CoursePage(toPush, professor), true);
+				await Navigation.PushAsync(new CoursePage(toPush.Name, toPush.Url, professor), true);
 				Selection = null;
 			});
 
@@ -97,6 +97,8 @@ namespace CSAssistant.ViewModels
 		{
 			MessagingCenter.Unsubscribe<ProfessorHomePageVM> (this, UpdateMessage);
 			MessagingCenter.Unsubscribe<Course> (this, PushMessage);
+			Courses.Clear ();
+			Courses = null;
 		}
 
 		#endregion

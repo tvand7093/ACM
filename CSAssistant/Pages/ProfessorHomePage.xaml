@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="CSAssistant.Pages.ProfessorHomePage"
-	xmlns:cells="clr-namespace:CSAssistant.Cells;assembly=CSAssistant"
+	xmlns:cells="clr-namespace:CSAssistant.Controls.Cells;assembly=CSAssistant"
 	Title="{Binding ProfessorName}" Icon="linux30.png" IsBusy="{Binding ShowLoading}">
 	<ContentPage.Content>
 		<StackLayout>

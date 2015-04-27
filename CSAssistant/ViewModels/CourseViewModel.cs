@@ -5,10 +5,12 @@ using CSAssistant.Helpers;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using CSAssistant.Pages;
+using System.Diagnostics;
+using System;
 
 namespace CSAssistant.ViewModels
 {
-	public class CourseViewModel : BaseViewModel, ISubscriber
+	internal sealed class CourseViewModel : BaseViewModel, ISubscriber
 	{
 		public string Title {get;set;}
 		public string UpdateMessage { get; private set; }
@@ -28,15 +30,15 @@ namespace CSAssistant.ViewModels
 		}
 
 		async void Push(){
-			await Navigation.PushAsync(new DocumentView(Selection));
+			await Navigation.PushAsync(new DocumentView(Selection.Name, Selection.Url));
 			Selection = null;
 		}
 
 		public ObservableCollection<AssignmentViewModel> Assignments { get; set; }
 
-		public CourseViewModel (Course toDisplay, Professor prof)
+		public CourseViewModel (string name, Professor prof)
 		{
-			Title = toDisplay.Name;
+			Title = name;
 			ShowLoading = true;
 			ShowContent = false;
 			UpdateMessage = prof == Professor.Lang ? Messaging.LangsCourseRecieved
@@ -48,6 +50,7 @@ namespace CSAssistant.ViewModels
 
 		public void Subscribe ()
 		{
+			//Lambda!
 			MessagingCenter.Subscribe<List<AssignmentViewModel>> (this, UpdateMessage,
 				(assignments) => {
 					Assignments.AddRange (assignments);
@@ -61,6 +64,9 @@ namespace CSAssistant.ViewModels
 		public void Unsubscribe ()
 		{
 			MessagingCenter.Unsubscribe<List<AssignmentViewModel>>  (this, UpdateMessage);
+			Selection = null;
+			Assignments.Clear ();
+			Assignments = null;
 		}
 
 		#endregion

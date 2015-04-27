@@ -1,12 +1,12 @@
 ﻿using System;
 using Xamarin.Forms.Platform.iOS;
 using CSAssistant.iOS.Interop.Renderers;
-using CSAssistant.Cells;
+using CSAssistant.Controls.Cells;
 
 [assembly: Xamarin.Forms.ExportRenderer(typeof(RightArrowCell), typeof(RightArrowCellRenderer))]
 namespace CSAssistant.iOS.Interop.Renderers
 {
-	public class RightArrowCellRenderer : TextCellRenderer
+	internal sealed class RightArrowCellRenderer : TextCellRenderer
 	{
 		public override UIKit.UITableViewCell GetCell (Xamarin.Forms.Cell item, UIKit.UITableViewCell reusableCell, UIKit.UITableView tv)
 		{

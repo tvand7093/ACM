@@ -1,10 +1,9 @@
-﻿using System;
-using Xamarin.Forms;
-using CSAssistant.Helpers;
+﻿using Xamarin.Forms;
+using CSAssistant.Models;
 
 namespace CSAssistant.Pages
 {
-	public class RootTabs : TabbedPage
+	internal sealed class RootTabs : TabbedPage
 	{
 		public RootTabs ()
 		{

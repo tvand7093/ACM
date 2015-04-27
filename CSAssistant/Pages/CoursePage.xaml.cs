@@ -11,16 +11,27 @@ namespace CSAssistant.Pages
 {
 	public partial class CoursePage : ContentPage
 	{
-		public CoursePage (Course toDisplay, Professor prof)
+		string url;
+		Professor prof;
+
+		public CoursePage (string name, string url, Professor prof)
 		{
-			var vm = new CourseViewModel (toDisplay, prof);
-			BindingContext = vm;
+			BindingContext = new CourseViewModel (name, prof);;
+			this.url = url;
+			this.prof = prof;
+
 			InitializeComponent ();
-			Appearing += (object sender, EventArgs e) => {
-				if(vm.Assignments.Count == 0)
-					CourseService.GetAssignments (toDisplay.Url, vm.UpdateMessage, prof);
-			};
+
 		}
+
+		protected override void OnAppearing ()
+		{
+			var vm = BindingContext as CourseViewModel;
+			if(vm.Assignments.Count == 0)
+				CourseService.GetAssignments (url, vm.UpdateMessage, prof);
+			base.OnAppearing ();
+		}
+
 	}
 }
 

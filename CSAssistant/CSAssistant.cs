@@ -1,11 +1,9 @@
-﻿using System;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using CSAssistant.Pages;
 
 namespace CSAssistant
 {
-	public class App : Application
+	public sealed class App : Application
 	{
 		public App ()
 		{

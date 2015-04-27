@@ -4,7 +4,7 @@ using CSAssistant.Interfaces;
 
 namespace CSAssistant.Pages
 {
-	public class SubscriberNavigationPage : NavigationPage
+	internal sealed class SubscriberNavigationPage : NavigationPage
 	{
 		public SubscriberNavigationPage (Page root) : base(root)
 		{

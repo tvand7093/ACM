@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="iOS/CSAssistant.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPhone di Tyler Vanderhoef" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CSAssistant/Pages/RootTabs.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.3" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CSAssistant/ViewModels/CourseViewModel.cs">
     <Files>
-      <File FileName="CSAssistant/Pages/ProfessorHomePage.xaml" Line="6" Column="41" />
-      <File FileName="CSAssistant/Services/CourseService.cs" Line="64" Column="5" />
-      <File FileName="CSAssistant/ViewModels/ProfessorHomePageVM.cs" Line="37" Column="38" />
-      <File FileName="CSAssistant/ViewModels/BaseViewModel.cs" Line="25" Column="47" />
+      <File FileName="CSAssistant/Pages/ProfessorHomePage.xaml" Line="1" Column="1" />
+      <File FileName="CSAssistant/Services/CourseService.cs" Line="1" Column="1" />
+      <File FileName="CSAssistant/ViewModels/ProfessorHomePageVM.cs" Line="1" Column="1" />
+      <File FileName="CSAssistant/ViewModels/BaseViewModel.cs" Line="1" Column="1" />
       <File FileName="CSAssistant/Pages/RootTabs.cs" Line="20" Column="1" />
+      <File FileName="CSAssistant/ViewModels/AssignmentViewModel.cs" Line="1" Column="1" />
+      <File FileName="CSAssistant/ViewModels/CourseViewModel.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,9 +1,9 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace CSAssistant.Cells
+namespace CSAssistant.Controls.Cells
 {
-	public class RightArrowCell : TextCell
+	public sealed class RightArrowCell : TextCell
 	{
 		public RightArrowCell ()
 		{

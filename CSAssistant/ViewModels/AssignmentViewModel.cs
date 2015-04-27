@@ -2,7 +2,7 @@
 
 namespace CSAssistant.ViewModels
 {
-	public class AssignmentViewModel
+	internal class AssignmentViewModel
 	{
 		public string Name {get;set;}
 		public string Url {get;set;}

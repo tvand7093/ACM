@@ -2,7 +2,7 @@
 
 namespace CSAssistant.Interfaces
 {
-	public interface ISubscriber
+	internal interface ISubscriber
 	{
 		void Subscribe();
 		void Unsubscribe();

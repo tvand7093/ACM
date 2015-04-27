@@ -7,7 +7,7 @@ using CSAssistant.Controls;
 [assembly: Xamarin.Forms.ExportRenderer(typeof(CustomWebView), typeof(CustomWebViewRenderer))]
 namespace CSAssistant.iOS.Interop.Renderers
 {
-	public class CustomWebViewRenderer : WebViewRenderer
+	internal sealed class CustomWebViewRenderer : WebViewRenderer
 	{
 		protected override void OnElementChanged(VisualElementChangedEventArgs e)
 		{

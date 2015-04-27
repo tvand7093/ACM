@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace CSAssistant.ViewModels
 {
-	public abstract class BaseViewModel : INotifyPropertyChanged 
+	internal abstract class BaseViewModel : INotifyPropertyChanged 
 	{
 		public bool IsBusy {
 			get { 
@@ -44,7 +44,7 @@ namespace CSAssistant.ViewModels
 		#endregion
 	}
 
-	public abstract class BaseViewModel<T> : BaseViewModel where T : class
+	internal abstract class BaseViewModel<T> : BaseViewModel where T : class
 	{
 
 		private T dataSource;

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using CSAssistant.Models;
-using System.Xml.Linq;
 using System.Linq;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
 using System.IO;
 using System.Net.Http;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using CSAssistant.ViewModels;
 using Xamarin.Forms;
@@ -17,7 +13,7 @@ using System.Text;
 
 namespace CSAssistant.Services
 {
-	public static class HomePageService
+	internal static class HomePageService
 	{
 		const string LangsAnchorPattern = @"(?<=<strong[^>]*>)\s*<a href=""(.*)"">(.*)</a>";
 		const string LangsImagePattern = @"src=""(.*[A-Za-z])""";

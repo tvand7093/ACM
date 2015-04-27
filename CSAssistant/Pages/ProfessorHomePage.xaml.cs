@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 using Xamarin.Forms;
-using CSAssistant.Helpers;
 using CSAssistant.ViewModels;
 using CSAssistant.Services;
+using CSAssistant.Models;
 
 namespace CSAssistant.Pages
 {

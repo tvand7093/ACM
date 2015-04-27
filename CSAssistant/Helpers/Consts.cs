@@ -2,7 +2,7 @@
 
 namespace CSAssistant.Helpers
 {
-	static class Messaging
+	internal static class Messaging
 	{
 		public const string LangsHomePageRecieved = "LangsHomePageRecieved";
 		public const string CochransHomePageRecieved = "CochransHomePageRecieved";
@@ -14,7 +14,7 @@ namespace CSAssistant.Helpers
 		public const string CochransCourseChanged = "CochransClassChanged";
 	}
 
-	static class ProfessorPages {
+	internal static class ProfessorPages {
 		public const string LangsWebsite = "http://lang.encs.vancouver.wsu.edu";
 		public const string CochransWebsite = "http://ezekiel.vancouver.wsu.edu";
 	}

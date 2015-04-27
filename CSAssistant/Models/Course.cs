@@ -2,7 +2,7 @@
 
 namespace CSAssistant.Models
 {
-	public class Course
+	internal sealed class Course
 	{
 		public string Name { get; set;}
 		public string Url { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSAssistant.Helpers
+namespace CSAssistant.Models
 {
 	public enum Professor
 	{
