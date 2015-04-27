@@ -11,6 +11,7 @@
 [Oo]bj
 *.suo
 *.vs
+.[Dd][Ss]_store
 
 # Precompiled Headers
 *.gch
