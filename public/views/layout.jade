@@ -1,0 +1,60 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    <!-- Latest compiled and minified CSS -->
+    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', href='public/css/justified-navbar.css')
+    script(src='https://code.jquery.com/jquery-2.1.4.min.js')
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+    block title
+   
+  body
+    div.container
+      div.masthead
+        h3.text-muted ACM at Washington State University Vancouver
+        nav
+          ul.nav.nav-justified
+            li
+              a(href='/') Home
+            li
+              a(href='#') Members
+            li
+              a(href='/officers') Officers
+            li
+              a(href='#') Events
+            li
+              a(href='#') Why we are awesome
+            li
+              a(href='/documentation') API Docs
+              
+      block body
+        
+      footer.footer
+        p © Xamandor 2015
+    script.
+          $(document).ready(function () {
+          
+            var url = window.location.href;
+
+            if(url.endsWith('/')){
+                $('ul.nav > li').removeClass('active');
+                $('ul.nav > li > a[href="/"]').parent().addClass('active');
+            }
+            else if(url.endsWith('/officers')){
+                $('ul.nav > li').removeClass('active');
+                $('ul.nav > li > a[href="/officers"]').parent().addClass('active');
+            }
+            else if(url.endsWith('/documentation')){
+                $('ul.nav > li').removeClass('active');
+                $('ul.nav > li > a[href="/documentation"]').parent().addClass('active');
+            }
+            
+            $('ul.nav > li').click(function (e) {
+                $('ul.nav > li').removeClass('active');
+                $(this).addClass('active');                
+            });            
+          });

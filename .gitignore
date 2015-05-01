@@ -13,6 +13,9 @@
 *.vs
 .[Dd][Ss]_store
 
+#node
+[Nn]ode_modules
+
 # Precompiled Headers
 *.gch
 *.pch

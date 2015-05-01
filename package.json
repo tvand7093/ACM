@@ -1,0 +1,29 @@
+{
+  "name": "Hub",
+  "version": "1.0.0",
+  "description": "The central hub for the ACM client server as well API.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/tvand7093/ACM.git"
+  },
+  "keywords": [
+    "acm",
+    "wsuv"
+  ],
+  "author": "Tyler Vanderhoef",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tvand7093/ACM/issues"
+  },
+  "homepage": "https://github.com/tvand7093/ACM",
+  "dependencies": {
+    "hapi": "^8.4.0",
+    "hapi-swagger": "^0.7.3",
+    "jade": "^1.9.2",
+    "joi": "^6.4.1"
+  }
+}
