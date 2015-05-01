@@ -9,6 +9,7 @@ html
     link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css", rel="stylesheet")
     link(rel='stylesheet', href='public/css/justified-navbar.css')
     script(src='https://code.jquery.com/jquery-2.1.4.min.js')
+    script(src='/public/scripts/layout.js')
     script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
     block title
    
@@ -35,26 +36,4 @@ html
         
       footer.footer
         p © Xamandor 2015
-    script.
-          $(document).ready(function () {
           
-            var url = window.location.href;
-
-            if(url.endsWith('/')){
-                $('ul.nav > li').removeClass('active');
-                $('ul.nav > li > a[href="/"]').parent().addClass('active');
-            }
-            else if(url.endsWith('/officers')){
-                $('ul.nav > li').removeClass('active');
-                $('ul.nav > li > a[href="/officers"]').parent().addClass('active');
-            }
-            else if(url.endsWith('/documentation')){
-                $('ul.nav > li').removeClass('active');
-                $('ul.nav > li > a[href="/documentation"]').parent().addClass('active');
-            }
-            
-            $('ul.nav > li').click(function (e) {
-                $('ul.nav > li').removeClass('active');
-                $(this).addClass('active');                
-            });            
-          });
