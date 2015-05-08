@@ -8,10 +8,10 @@ module.exports = function(success){
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function (callback) {
     // db opened
-  
-    var Officer = mongoose.model('Officers', schemas.officer);
     success({
-      Officer: Officer
+      Officer: mongoose.model('Officers', schemas.officer),
+      User: mongoose.model('Users', schemas.user),
+      close: function(){ db.close(); }
     });
   });
 };

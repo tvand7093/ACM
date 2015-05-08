@@ -15,8 +15,23 @@ html
    
   body
     div.container
-      div.masthead
+      div.navbar-header
         h3.text-muted ACM at Washington State University Vancouver
+      div.navbar-collapse.collapse
+        if !isLoggedIn
+          form.navbar-form.navbar-right(name="login", action="/login", method="post")
+            div.form-group
+              input.form-control(type="text", placeholder='Email', name="email")
+            div.form-group
+              input.form-control(type="password", placeholder='Password', name="password")
+            button.btn.btn-success(type='submit') Sign In
+        else
+          form.navbar-form.navbar-right(action='/logout', method='post')
+            button.btn.btn-success.navbar-right(type='submit') Sign Out
+          
+        
+        
+    div.container
         nav
           ul.nav.nav-justified
             li
@@ -29,11 +44,14 @@ html
               a(href='#') Events
             li
               a(href='#') Why we are awesome
-            li
-              a(href='/documentation') API Docs
+            if isAdmin
+              li
+                a(href='/documentation') API Docs
+              li
+                a(href='#') Portal
               
-      block body
+        block body
         
-      footer.footer
-        p © Xamandor 2015
+        footer.footer
+          p © Xamandor 2015
           

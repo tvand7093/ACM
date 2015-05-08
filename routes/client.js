@@ -1,35 +1,62 @@
 var database = require ('../data/database');
+var Joi = require('joi');
+var auth = require('./auth');
 
-function index(request, reply){
-	reply.view("index");
+function loggedIn(request){
+    var session = request.session.get("currentUser");
+    return { 
+        isLoggedIn: session != null,
+        isAdmin: session == null ? false : session.isAdmin
+      };
 }
 
-function officers(request, reply){
-    database(function(db){
-        var newOfficer = new db.Officer({
-            name: 'Tyler Vanderhoef',
-            position: 'President',
-            bio: 'Tyler is a cool person!'
+function login(request, reply){
+    auth(request.payload.email, request.payload.password, 
+        function(isValid, auth){
+            request.session.set("currentUser", auth);
+            reply.redirect('/');
         });
-        newOfficer.save();
-        var list = db.Officer.find();
-    	reply.view("officers", newOfficer);
-    });
-
 }
 
-var Types = require('hapi').types;
 module.exports= [{
     method: 'GET',
     path: '/',
     config: {
-        handler: index
+        handler: function(request, reply){
+        	reply.view("index", loggedIn(request));
+        }
     }
 },
 {
     method: 'GET',
     path: '/officers',
     config: {
-        handler: officers
+        handler: function(request, reply){
+            reply.view("officers", loggedIn(request));
+        }
+    }
+},
+{
+    method: 'POST',
+    path: '/logout',
+    config: {
+        handler: function(request, reply){
+            request.session.clear("currentUser");
+            request.session.reset();
+            reply.redirect('/');
+        }
+    }
+},
+{
+    method: 'POST',
+    path: '/login',
+    config: {
+        handler: login,
+        validate: {
+            payload: {
+                email: Joi.string().min(4).required(),
+                password: Joi.string().min(8).required()
+            }
+        }
     }
 }];
