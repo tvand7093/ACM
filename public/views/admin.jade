@@ -1,0 +1,32 @@
+extends ./layout.jade
+
+block title
+    title ACM Admin
+
+block body
+    div.jumbotron
+        div(role='tabpanel')
+            ul.nav.nav-tabs(role='tablist')
+                if settings.profile
+                    li.active(role='presentation')
+                        a(href='#profile', role='tab', data-toggle='tab', aria-controls='profile') My User Profile
+                    li(role='presentation')
+                        a(href='#users', data-toggle='tab', role='tab', aria-controls='users') Manage Users
+                else
+                    li.active(role='presentation')
+                        a(href='#users', data-toggle='tab', role='tab', aria-controls='users') Manage Users
+                
+                li(role='presentation')
+                    a(href='#officers', data-toggle='tab', role='tab', aria-controls='officers') Manage Officers
+
+            div.tab-content
+                if settings.profile
+                    div#profile.tab-pane.fade.in.active(role='tabpanel')
+                        p content!
+                    div#users.tab-pane.fade(role='tabpanel')
+                        p more content!!
+                else
+                    div#users.tab-pane.fade.in.active(role='tabpanel')
+                        each user in settings.users
+                div#officers.tab-pane.fade(role='tabpanel')
+                    p FINALLY!!!

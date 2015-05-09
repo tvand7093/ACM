@@ -3,20 +3,24 @@ $(document).ready(function () {
 	var url = window.location.href;
 	
 	if(url.endsWith('/')){
-	    $('ul.nav > li').removeClass('active');
-	    $('ul.nav > li > a[href="/"]').parent().addClass('active');
+	    $('#main-navbar > li').removeClass('active');
+	    $('#main-navbar > li > a[href="/"]').parent().addClass('active');
 	}
 	else if(url.endsWith('/officers')){
-	    $('ul.nav > li').removeClass('active');
-	    $('ul.nav > li > a[href="/officers"]').parent().addClass('active');
+	    $('#main-navbar > li').removeClass('active');
+	    $('#main-navbar > li > a[href="/officers"]').parent().addClass('active');
 	}
 	else if(url.endsWith('/documentation')){
-	    $('ul.nav > li').removeClass('active');
-	    $('ul.nav > li > a[href="/documentation"]').parent().addClass('active');
+	    $('#main-navbar > li').removeClass('active');
+	    $('#main-navbar > li > a[href="/documentation"]').parent().addClass('active');
+	}
+	else if(url.endsWith('/admin')){
+	    $('#main-navbar > li').removeClass('active');
+	    $('#main-navbar > li > a[href="/admin"]').parent().addClass('active');
 	}
 	
-	$('ul.nav > li').click(function (e) {
-	    $('ul.nav > li').removeClass('active');
+	$('#main-navbar > li').click(function (e) {
+	    $('#main-navbar > li').removeClass('active');
 	    $(this).addClass('active');                
 	});            
 });
