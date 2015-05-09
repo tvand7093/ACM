@@ -19,6 +19,20 @@ body {
   font-size: 21px;
 }
 
+.form-body {
+  padding: 15px;
+}
+
+.admin-tabs {
+  padding: 20px;
+}
+
+.bordered-content {
+  border: 1px #ddd solid;
+  border-top: none;
+  padding: 15px;
+}
+
 /* Customize the nav-justified links to be fill the entire space of the .navbar */
 
 .nav-justified {

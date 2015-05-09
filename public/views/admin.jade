@@ -1,32 +1,50 @@
 extends ./layout.jade
 
 block title
+    script(src='/public/scripts/admin.js')
     title ACM Admin
-
+    
 block body
-    div.jumbotron
-        div(role='tabpanel')
-            ul.nav.nav-tabs(role='tablist')
-                if settings.profile
-                    li.active(role='presentation')
-                        a(href='#profile', role='tab', data-toggle='tab', aria-controls='profile') My User Profile
+    div.row
+        .admin-tabs
+            div(role='tabpanel')
+                ul.nav.nav-tabs(role='tablist')
+                    if settings.profile
+                        li.active(role='presentation')
+                            a(href='#profile', role='tab', data-toggle='tab', aria-controls='profile') My User Profile
+                        li(role='presentation')
+                            a(href='#users', data-toggle='tab', role='tab', aria-controls='users') Manage Users
+                    else
+                        li.active(role='presentation')
+                            a(href='#users', data-toggle='tab', role='tab', aria-controls='users') Manage Users
+                            
                     li(role='presentation')
-                        a(href='#users', data-toggle='tab', role='tab', aria-controls='users') Manage Users
-                else
-                    li.active(role='presentation')
-                        a(href='#users', data-toggle='tab', role='tab', aria-controls='users') Manage Users
-                
-                li(role='presentation')
-                    a(href='#officers', data-toggle='tab', role='tab', aria-controls='officers') Manage Officers
-
-            div.tab-content
-                if settings.profile
-                    div#profile.tab-pane.fade.in.active(role='tabpanel')
-                        p content!
-                    div#users.tab-pane.fade(role='tabpanel')
-                        p more content!!
-                else
-                    div#users.tab-pane.fade.in.active(role='tabpanel')
-                        each user in settings.users
-                div#officers.tab-pane.fade(role='tabpanel')
-                    p FINALLY!!!
+                        a(href='#officers', data-toggle='tab', role='tab', aria-controls='officers') Manage Officers
+                        
+                 div.tab-content.bordered-content
+                     if settings.profile
+                         div#profile.tab-pane.fade.in.active(role='tabpanel')
+                             p content
+                         div#users.tab-pane.fade(role='tabpanel')
+                             p more content!!
+                     else
+                         div#users.tab-pane.fade.in.active(role='tabpanel')
+                            div.row
+                                .col-lg-12
+                                    h3.col-lg-12 Add New User
+                                    form(type='post', action='addUser')
+                                        div.col-lg-3
+                                            input.form-control(type='text', name='name', placeholder='Name')
+                                        div.col-lg-3
+                                            input.form-control(type='text', name='email', placeholder='Email')
+                                        div.col-lg-3
+                                            input.form-control(type='text', name='password', placeholder='New Password')
+                                        div.col-lg-1
+                                            label(for='checkbox') Admin?
+                                                input(type='checkbox' name='isAdmin' value='false')
+                                        div.col-lg-2
+                                            button.btn.btn-success(type='submit') Add
+                             
+                     div#officers.tab-pane.fade(role='tabpanel')
+                         p FINALLY!!!
+                        

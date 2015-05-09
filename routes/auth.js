@@ -10,7 +10,11 @@ module.exports = function(email, password, callback){
                         db.close();
                         callback(match, { id: user.id, name: user.username, isAdmin: user.isAdmin });
                     });
-                }    
+                }   
+                else{
+                    db.close();
+                    callback(false, null);
+                } 
             }); 
     });
 };

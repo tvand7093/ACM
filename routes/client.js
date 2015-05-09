@@ -13,7 +13,8 @@ function loggedIn(request){
 function login(request, reply){
     auth(request.payload.email, request.payload.password, 
         function(isValid, auth){
-            request.session.set("currentUser", auth);
+            if(isValid)
+                request.session.set("currentUser", auth);
             reply.redirect('/');
         });
 }
