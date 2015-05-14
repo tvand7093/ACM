@@ -5,12 +5,13 @@ $(document).ready(function () {
 			isAdmin: $('input[name="isAdmin"]').val(),
 			username: $('input[name="username"]').val(),
 			password: $('input[name="password"]').val(),
-			email: $('input[name="email"]').val()	
+			email: $('input[name="email"]').val(),
+			position: $('.position').val()
 		};
 		$.post("/admin/user/create", data,
 			function(result){
 				//add new user to view.
-				if(result != null){
+				if(result){
 					//check if it is good or not.
 					$('#addUserErrors').html('');
 					//validation success, so add user to view

@@ -1,5 +1,5 @@
 h3.col-lg-12 Add New User
-ul#addUserErrors.hidden
+ul#addUserErrors.hidden(style='list-style-type: none')
 form(type='post', action='/user/create')
 	div.col-lg-3
 		input.form-control(type='text', name='username', placeholder='Username')

@@ -3,87 +3,13 @@ var Joi = require('joi');
 var auth = require('./auth');
 var jwt = require('../config/token');
 var config = require('../config/config');
+var Admin = require('../controllers/admin_controller');
+var Users = require('../controllers/users_controller');
 
 function loggedIn(token){
     return { 
         isLoggedIn: token != null
-      };
-}
-
-function getUserProfile(userId, callback){
-    db.User.findOne({id: userId}, function(err, user){
-       if(!err && user != null){
-           db.Officer.findOne({userId: user.id}, function(error, officer){
-               var profile = {
-                   isLoggedIn: true,
-                   isAdmin: user.isAdmin,
-                   profile: {
-                       username: user.username,
-                       email: user.email,
-                       bio: officer.bio,
-                       position: officer.position
-                   }
-               };
-               callback(profile);
-           });
-       }
-       else {
-            callback(null);
-       }
-   });
-}
-
-function getUsers(callback) {
-    db.User.find({isSysAdmin: false}, { password: 0 }, function(err, user){
-        if(!err)
-            callback(user);
-        else
-            callback(null);
-    });
-}
-
-function getOfficers(callback){
-    db.Officer.find(function(err, officers){
-        if(!err)
-            callback(officers);
-        else
-            callback(null);
-    });
-}
-
-function getSettings(profile, callback){
-   getUserProfile(profile.id, function(profile){
-       getUsers(function(users){
-          getOfficers(function(officers){
-               callback({
-                   profile: profile,
-                   users: users,
-                   officers: officers
-               });
-          }) ;
-       });
-   });
-}
-
-function createNewUser(objToAdd, callback){
-    db.User.findOne({email: objToAdd.email}, function(error, user){
-       if(user == null){
-           //no user with that email, so add them.
-           var toAdd = new db.User({
-               username: objToAdd.username,
-               email: objToAdd.email,
-               isAdmin: objToAdd.isAdmin,
-               password: objToAdd.password,
-               isSysAdmin: false,
-               enabled: true
-           });
-           toAdd.save(function(error, success){
-               callback(toAdd);
-           });
-           //error. So return null.
-           callback();
-       } 
-    });
+    };
 }
 
 module.exports= [{
@@ -96,7 +22,8 @@ module.exports= [{
                     reply.redirect('/NotAuthorized');
                 }
                 else{
-                    getSettings(profile, function(settings){
+                    console.log(profile);
+                    Admin.fetch(profile.id, function(settings){
                         if(settings == null){
                             reply.redirect('/PageNotFound');
                         }
@@ -120,16 +47,17 @@ module.exports= [{
                 email: Joi.string().min(4).required(),
                 password: Joi.string().min(8).required(),
                 username: Joi.string().required(),
-                isAdmin: Joi.boolean().required()
+                isAdmin: Joi.boolean().required(),
+                position: Joi.string().required()
             }
         },
         handler: function(request, reply){
-            jwt.processRequest(request, reply, function(token){
+            jwt.processRequest(request, function(token){
                 if(token == null){
                     reply.redirect('/NotAuthorized');
                 }
                 else{
-                    createNewUser(request.payload, function(added){
+                    Users.create(request.payload, function(added){
                         reply(added);
                     });
                 }
