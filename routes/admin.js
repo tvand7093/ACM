@@ -1,20 +1,19 @@
-var database = require ('../data/database');
+var db = require ('../data/database').db;
 var Joi = require('joi');
 var auth = require('./auth');
+var jwt = require('../config/token');
+var config = require('../config/config');
 
-function loggedIn(request){
-    var session = request.session.get("currentUser");
+function loggedIn(token){
     return { 
-        isLoggedIn: session != null,
-        isAdmin: session == null ? false : session.isAdmin
+        isLoggedIn: token != null
       };
 }
 
-function getUserProfile(db, userId){
+function getUserProfile(userId, callback){
     db.User.findOne({id: userId}, function(err, user){
        if(!err && user != null){
            db.Officer.findOne({userId: user.id}, function(error, officer){
-               db.close();
                var profile = {
                    isLoggedIn: true,
                    isAdmin: user.isAdmin,
@@ -25,85 +24,90 @@ function getUserProfile(db, userId){
                        position: officer.position
                    }
                };
-               return profile;
+               callback(profile);
            });
        }
        else {
-            return null;
+            callback(null);
        }
    });
 }
 
-function getUsers(db) {
-    return db.User.find({isSysAdmin: false}, { password: 0 });
+function getUsers(callback) {
+    db.User.find({isSysAdmin: false}, { password: 0 }, function(err, user){
+        if(!err)
+            callback(user);
+        else
+            callback(null);
+    });
 }
 
-function getOfficers(db){
-    return db.Officer.find();
+function getOfficers(callback){
+    db.Officer.find(function(err, officers){
+        if(!err)
+            callback(officers);
+        else
+            callback(null);
+    });
 }
 
-function getSettings(session, callback){
-    database(function(db){
-       var userProfile = getUserProfile(db, session.id);
-       var users = getUsers(db);
-       var officers = getOfficers(db);
-       db.close();
-       callback({
-           profile: userProfile,
-           users: users,
-           officers: officers
+function getSettings(profile, callback){
+   getUserProfile(profile.id, function(profile){
+       getUsers(function(users){
+          getOfficers(function(officers){
+               callback({
+                   profile: profile,
+                   users: users,
+                   officers: officers
+               });
+          }) ;
        });
-    });
+   });
 }
 
-function createNewUser(objToAdd){
-    database(function(db){
-        db.User.findOne({email: objToAdd.email}, function(error, user){
-           if(user == null){
-               //no user with that email, so add them.
-               var toAdd = new db.User({
-                   username: objToAdd.username,
-                   email: objToAdd.email,
-                   isAdmin: objToAdd.isAdmin,
-                   password: objToAdd.password,
-                   isSysAdmin: false,
-                   enabled: true
-               });
-               toAdd.save(function(error, success){
-                   db.close();
-                   return toAdd;
-               });
-               //error. So return null.
-               return null;
-           } 
-           else db.close();
-        });
+function createNewUser(objToAdd, callback){
+    db.User.findOne({email: objToAdd.email}, function(error, user){
+       if(user == null){
+           //no user with that email, so add them.
+           var toAdd = new db.User({
+               username: objToAdd.username,
+               email: objToAdd.email,
+               isAdmin: objToAdd.isAdmin,
+               password: objToAdd.password,
+               isSysAdmin: false,
+               enabled: true
+           });
+           toAdd.save(function(error, success){
+               callback(toAdd);
+           });
+           //error. So return null.
+           callback();
+       } 
     });
-    return null;
 }
 
 module.exports= [{
     method: 'GET',
     path: '/admin',
     config: {
-        auth: 'token',
         handler: function(request, reply){
-            var session = request.session.get("currentUser");
-            if(session == null){
-                reply.redirect('/NotAuthorized');
-            }
-            else{
-                getSettings(session, function(settings){
-                    if(settings == null){
-                        reply.redirect('/PageNotFound');
-                    }
-                    else {
-                        var toSend = loggedIn(request);
-                        toSend.settings = settings;
-                        reply.view('admin', toSend);
-                    }
-                });
-            }
+            jwt.processRequest(request, function(profile){
+                if(!profile){
+                    reply.redirect('/NotAuthorized');
+                }
+                else{
+                    getSettings(profile, function(settings){
+                        if(settings == null){
+                            reply.redirect('/PageNotFound');
+                        }
+                        else {
+                            var toSend = loggedIn(profile);
+                            toSend.settings = settings;
+                            reply.view('./admin/admin', toSend);
+                        }
+                    });
+                }
+            });
         }
     }
 },
@@ -111,7 +115,6 @@ module.exports= [{
     method: 'POST',
     path: '/admin/user/create',
     config: {
-        auth: 'token',
         validate: {
             payload: {
                 email: Joi.string().min(4).required(),
@@ -121,13 +124,16 @@ module.exports= [{
             }
         },
         handler: function(request, reply){
-            var session = request.session.get("currentUser");
-            if(session == null){
-                reply.redirect('/NotAuthorized');
-            }
-            else{
-                reply(createNewUser(request.payload));
-            }
+            jwt.processRequest(request, reply, function(token){
+                if(token == null){
+                    reply.redirect('/NotAuthorized');
+                }
+                else{
+                    createNewUser(request.payload, function(added){
+                        reply(added);
+                    });
+                }
+            });
         }
     }
 }];

@@ -1,0 +1,14 @@
+h3.col-lg-12 Add New User
+ul#addUserErrors.hidden
+form(type='post', action='/user/create')
+	div.col-lg-3
+		input.form-control(type='text', name='username', placeholder='Username')
+	div.col-lg-3
+		input.form-control(type='text', name='email', placeholder='Email')
+	div.col-lg-3
+		input.form-control(type='text', name='password', placeholder='New Password')
+	div.col-lg-1
+		label(for='checkbox') Admin?
+		input(type='checkbox' name='isAdmin' value='false')
+	div.col-lg-2
+		a.btn.btn-success.add-user(href='#') Add

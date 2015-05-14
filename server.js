@@ -5,8 +5,9 @@ var Routes = require('./routes/routes');
 var database = require ('./data/database');
 var server = new Hapi.Server();
 var token = require('./config/token');
+var config = require('./config/config');
 
-server.connection({ port: 8080 });
+server.connection({ port: config.port });
 
 // Load up the swagger plugin for documentation
 server.register({
@@ -24,21 +25,14 @@ server.register({
     register: require('yar'),
     options: {
         cookieOptions: {
-            password: 'NJbk$CQgyBLqCt*BdEBiZXghPqAR49v',
+            password: config.yarPrivateKey,
             isSecure: false
         }
     },
 
 }, function (err) { });
 
-server.register(require('hapi-auth-jwt'), function (error) {
-
-    server.auth.strategy('token', 'jwt', {
-        key: token.key,
-        validateFunc: token.validateFunc
-    });
-    server.route(Routes);
-});
+server.route(Routes);
 
 server.views({
     engines: {
@@ -46,34 +40,31 @@ server.views({
     },
     path: "./public/views",
     compileOptions: {
-        pretty: true
+        pretty: true,
+        compileDebug: true
     }
 });
 
 //ensures that the admin account is created prior to running the website.
 function ensureAdmin(){
-    database(function(db){
-        db.User.findOne({enabled: true, isSysAdmin: true, isAdmin: true, username: "Admin"}, function(err, result){
+    database.startDB(function(db){
+        db.User.findOne({enabled: true, isSysAdmin: true, isAdmin: true, username: config.defaultAdmin.username}, function(err, result){
           //look for admin, if not found, create!
           if(result == null){
             var admin = new db.User({
-              username: "Admin",
+              username: config.defaultAdmin.username,
               enabled: true,
               isSysAdmin: true,
               isAdmin: true,
-              email: "admin@acmcoug.com",
-              password: "nyxCu2Kjn%wirTwuVEiVG&8JpqjTmeg"
+              email: config.defaultAdmin.email,
+              password: config.defaultAdmin.password
             });
             admin.save(function(error){
               if(error)
                 console.log("Error creating Admin account on server.");
               else
                 console.log("FIRST RUN: Sucessfully added Admin account!");
-              db.close();
             });
-          }
-          else{
-              db.close();
           }
         });
     });

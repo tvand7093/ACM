@@ -1,0 +1,20 @@
+h3.col-lg-12 Current Users
+
+div.col-md-12
+	.col-md-4
+		Username
+	.col-md-4
+		Email
+	.col-md-4
+		Enabled
+
+ol#usersList
+	each user in settings.users
+		li
+			div.col-md-12
+				.col-md-4
+					label user.username
+				.col-md-4
+					label user.email
+				.col-md-4
+					label user.enabled

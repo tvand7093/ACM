@@ -37,21 +37,21 @@ html
             li
               a(href='/') Home
             li
-              a(href='#') Members
-            li
               a(href='/officers') Officers
             li
               a(href='#') Events
             li
               a(href='#') Why we are awesome
-            if isAdmin
-              li
-                a(href='/documentation') API Docs
+            if isLoggedIn
               li
                 a(href='/admin') Admin
               
         block body
         
         footer.footer
-          p © Xamandor 2015
+          div.col.lg-12
+            .col-lg-4
+              p © Xamandor 2015
+            .col-lg-4
+              a(href='/documentation') API Docs
           

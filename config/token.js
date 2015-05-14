@@ -1,30 +1,33 @@
 var jwt = require('jsonwebtoken'),
-    database = require('../data/database');
-    
-var privateKey = 'BbZJjyoXAdr8BUZuiKKARWimKfrSmQ6fv8kZ7OFfc';
+    database = require('../data/database'),
+    config = require('./config');
 
-// Use this token to build your request with the 'Authorization' header.  
-// Ex:
-//     Authorization: Bearer <token>
 function createToken(user){
-    return jwt.sign(user, privateKey);
+    return jwt.sign(user, config.jwtPrivateKey);
 }
 
-var validate = function (decodedToken, callback) {
-    database(function(db){
-        db.User.findOne({id: decodedToken.id}, function(err, user){
-            db.close();
-            if(!err && user != null){
-                //user found, so they are authorized.
-                return callback(err, true, user);
-            }
-            return callback(err, false, user);
-        });
+function decode(token, callback){
+    jwt.verify(token, config.jwtPrivateKey, function(err, decoded) {
+        if(err) callback(null);
+        else callback(decoded);
     });
-};
+}
+
+function ensureLoggedIn(request, callback){
+    var session = request.session.get(config.sessionKey);
+    
+    if(!session) {
+        callback(null);
+        return;
+    } 
+    
+    decode(session, function(token){
+        callback(token);
+    });
+}
 
 module.exports = {
-    validateFunc: validate,
-    createToken: createToken,
-    key: privateKey
+    encode: createToken,
+    decode: decode,
+    processRequest: ensureLoggedIn
 };

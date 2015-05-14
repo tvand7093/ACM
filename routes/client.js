@@ -1,33 +1,19 @@
 var database = require ('../data/database');
 var Joi = require('joi');
 var auth = require('./auth');
-var token = require('../config/token');
+var jwt = require('../config/token');
 
-function loggedIn(request){
-    var session = request.session.get("currentUser");
+function loggedIn(token){
     return { 
-        isLoggedIn: session != null,
-        isAdmin: session == null ? false : session.isAdmin
+        isLoggedIn: token != null
       };
 }
 
 function login(request, reply){
-    auth(request.payload.email, request.payload.password, 
-        function(isValid, auth){
-            var jwt = '';
-            if(isValid){
-                jwt = token.createToken(auth);
-                request.session.set("currentUser", auth);
-            }
-
-            jwt == '' ? reply.redirect('/').header('Authorization', 'Bearer ' + jwt) :
-                reply.redirect('/');
+    auth(request, request.payload.email, request.payload.password, 
+        function(token){
+            reply.redirect('/');
         });
-}
-
-function addAuth(request){
-    var auth = 'Bearer ' + request.auth.credentials;
-    return auth;
 }
 
 module.exports= [{
@@ -35,9 +21,9 @@ module.exports= [{
     path: '/',
     config: {
         handler: function(request, reply){
-            
-        	reply.view("index", loggedIn(request))
-                .header('Authorization', addAuth(request));
+            jwt.processRequest(request, function(token){
+                reply.view("index", loggedIn(token));
+            });
         }
     }
 },
@@ -46,7 +32,10 @@ module.exports= [{
     path: '/officers',
     config: {
         handler: function(request, reply){
-            reply.view("officers", loggedIn(request));
+            jwt.processRequest(request, function(token){
+                reply.view("officers", loggedIn(token));
+            });
+            
         }
     }
 },
