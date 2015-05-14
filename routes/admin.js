@@ -56,10 +56,37 @@ function getSettings(session, callback){
     });
 }
 
+function createNewUser(objToAdd){
+    database(function(db){
+        db.User.findOne({email: objToAdd.email}, function(error, user){
+           if(user == null){
+               //no user with that email, so add them.
+               var toAdd = new db.User({
+                   username: objToAdd.username,
+                   email: objToAdd.email,
+                   isAdmin: objToAdd.isAdmin,
+                   password: objToAdd.password,
+                   isSysAdmin: false,
+                   enabled: true
+               });
+               toAdd.save(function(error, success){
+                   db.close();
+                   return toAdd;
+               });
+               //error. So return null.
+               return null;
+           } 
+           else db.close();
+        });
+    });
+    return null;
+}
+
 module.exports= [{
     method: 'GET',
     path: '/admin',
     config: {
+        auth: 'token',
         handler: function(request, reply){
             var session = request.session.get("currentUser");
             if(session == null){
@@ -76,6 +103,30 @@ module.exports= [{
                         reply.view('admin', toSend);
                     }
                 });
+            }
+        }
+    }
+},
+{
+    method: 'POST',
+    path: '/admin/user/create',
+    config: {
+        auth: 'token',
+        validate: {
+            payload: {
+                email: Joi.string().min(4).required(),
+                password: Joi.string().min(8).required(),
+                username: Joi.string().required(),
+                isAdmin: Joi.boolean().required()
+            }
+        },
+        handler: function(request, reply){
+            var session = request.session.get("currentUser");
+            if(session == null){
+                reply.redirect('/NotAuthorized');
+            }
+            else{
+                reply(createNewUser(request.payload));
             }
         }
     }

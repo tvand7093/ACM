@@ -4,7 +4,8 @@ var Joi = require('joi');
 var Routes = require('./routes/routes');
 var database = require ('./data/database');
 var server = new Hapi.Server();
-var Yar =
+var token = require('./config/token');
+
 server.connection({ port: 8080 });
 
 // Load up the swagger plugin for documentation
@@ -30,8 +31,15 @@ server.register({
 
 }, function (err) { });
 
+server.register(require('hapi-auth-jwt'), function (error) {
 
-server.route(Routes);
+    server.auth.strategy('token', 'jwt', {
+        key: token.key,
+        validateFunc: token.validateFunc
+    });
+    server.route(Routes);
+});
+
 server.views({
     engines: {
         jade: require("jade")

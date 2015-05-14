@@ -24,9 +24,11 @@
     "bcrypt": "^0.8.3",
     "hapi": "^8.4.0",
     "hapi-auth-basic": "^2.0.0",
+    "hapi-auth-jwt": "^2.1.2",
     "hapi-swagger": "^0.7.3",
     "jade": "^1.9.2",
     "joi": "^6.4.1",
+    "jsonwebtoken": "^5.0.0",
     "mongodb": "^2.0.28",
     "mongoose": "^4.0.2",
     "yar": "^3.0.3"

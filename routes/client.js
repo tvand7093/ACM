@@ -1,6 +1,7 @@
 var database = require ('../data/database');
 var Joi = require('joi');
 var auth = require('./auth');
+var token = require('../config/token');
 
 function loggedIn(request){
     var session = request.session.get("currentUser");
@@ -13,10 +14,20 @@ function loggedIn(request){
 function login(request, reply){
     auth(request.payload.email, request.payload.password, 
         function(isValid, auth){
-            if(isValid)
+            var jwt = '';
+            if(isValid){
+                jwt = token.createToken(auth);
                 request.session.set("currentUser", auth);
-            reply.redirect('/');
+            }
+
+            jwt == '' ? reply.redirect('/').header('Authorization', 'Bearer ' + jwt) :
+                reply.redirect('/');
         });
+}
+
+function addAuth(request){
+    var auth = 'Bearer ' + request.auth.credentials;
+    return auth;
 }
 
 module.exports= [{
@@ -24,7 +35,9 @@ module.exports= [{
     path: '/',
     config: {
         handler: function(request, reply){
-        	reply.view("index", loggedIn(request));
+            
+        	reply.view("index", loggedIn(request))
+                .header('Authorization', addAuth(request));
         }
     }
 },
