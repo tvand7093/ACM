@@ -147,7 +147,7 @@ function getCurrentHolders(callback){
            getPosition('Treasurer', function(tres){
                 getPosition('Secretary', function(sec){
                    getPosition('Secretary (Outreach)', function(out){
-                      var valid = pres && vp && tres && sec && out;
+                      var valid = pres != null && vp != null && tres != null && sec != null && out != null;
                        
                       callback({
                         president: pres,
@@ -155,7 +155,7 @@ function getCurrentHolders(callback){
                         treasurer: tres,
                         secretary: sec,
                         outreach: out,
-                        valid: valid 
+                        valid: valid == true
                       });
                    });
                 });
