@@ -6,7 +6,7 @@ module.exports = {
 	defaultAdmin: {
 		username: 'Admin',
 		email: 'admin@acmcoug.com',
-        password: '<Your admin password heres>'
+        password: '<Your admin password here>'
 	},
 	
 	//YAR PRIVATE KEY FOR SESSION STORAGE.
