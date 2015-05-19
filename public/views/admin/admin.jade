@@ -9,27 +9,13 @@ block body
         .admin-tabs
             div(role='tabpanel')
                 ul.nav.nav-tabs(role='tablist')
-                    if settings.profile
-                        li.active(role='presentation')
-                            a(href='#profile', role='tab', data-toggle='tab', aria-controls='profile') My User Profile
-                        li(role='presentation')
-                            a(href='#users', data-toggle='tab', role='tab', aria-controls='users') Manage Users
-                    else
-                        li.active(role='presentation')
-                            a(href='#users', data-toggle='tab', role='tab', aria-controls='users') Manage Users
-                            
-                    li(role='presentation')
+                    li.active(role='presentation')
                         a(href='#officers', data-toggle='tab', role='tab', aria-controls='officers') Manage Officers
-
+                    li(role='presentation')
+                        a(href='#events', data-toggle='tab', role='tab', aria-controls='events') Manage Events
+                        
                  div.tab-content.bordered-content
-                     if settings.profile
-                         div#profile.tab-pane.fade.in.active(role='tabpanel')
-                             p content
-                         div#users.tab-pane.fade(role='tabpanel')
-                             include ./users/index.jade
-                     else
-                         div#users.tab-pane.fade.in.active(role='tabpanel')
-                            include ./users/index.jade
-
-                     div#officers.tab-pane.fade(role='tabpanel')
+                     div#officers.tab-pane.fade.in.active(role='tabpanel')
+                            include ./officers/index.jade
+                     div#events.tab-pane.fade(role='tabpanel')
                          p FINALLY!!!

@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
 
 module.exports = mongoose.Schema({
-	position: { type: String, required: true },
+	position: { type: String, required: true, index: { unique: true } },
 	bio: { type: String },
-	userId: { type: String, required: true }
+	user: { type: Schema.Types.ObjectId, ref: 'Users' }
 });
 

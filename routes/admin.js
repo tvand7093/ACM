@@ -4,7 +4,8 @@ var auth = require('./auth');
 var jwt = require('../config/token');
 var config = require('../config/config');
 var Admin = require('../controllers/admin_controller');
-var Users = require('../controllers/users_controller');
+var Officers = require('../controllers/officers_controller');
+var boom = require('boom');
 
 function loggedIn(token){
     return { 
@@ -22,7 +23,6 @@ module.exports= [{
                     reply.redirect('/NotAuthorized');
                 }
                 else{
-                    console.log(profile);
                     Admin.fetch(profile.id, function(settings){
                         if(settings == null){
                             reply.redirect('/PageNotFound');
@@ -40,14 +40,13 @@ module.exports= [{
 },
 {
     method: 'POST',
-    path: '/admin/user/create',
+    path: '/admin/officer/create',
     config: {
         validate: {
             payload: {
                 email: Joi.string().min(4).required(),
-                password: Joi.string().min(8).required(),
+                bio: Joi.string(),
                 username: Joi.string().required(),
-                isAdmin: Joi.boolean().required(),
                 position: Joi.string().required()
             }
         },
@@ -57,11 +56,80 @@ module.exports= [{
                     reply.redirect('/NotAuthorized');
                 }
                 else{
-                    Users.create(request.payload, function(added){
-                        reply(added);
+                    Officers.create(request.payload, function(added){
+                        if(added.error){
+                            //error, so 404
+                            return reply(boom.badRequest(added.error));
+                        }
+                        else{
+                            reply(added);
+                        }
                     });
                 }
             });
         }
     }
-}];
+},
+{
+    method: 'PUT',
+    path: '/admin/officer/update',
+    config: {
+        validate: {
+            payload: {
+                id: Joi.string().length(24).required(),
+                email: Joi.string().min(4).required(),
+                bio: Joi.string(),
+                username: Joi.string().required(),
+                position: Joi.string().required()
+            }
+        },
+        handler: function(request, reply){
+            jwt.processRequest(request, function(token){
+                if(token == null){
+                    reply.redirect('/NotAuthorized');
+                }
+                else{
+                    Officers.update(request.payload, function(updated){
+                        if(updated.error){
+                            //error, so 404
+                            return reply(boom.badRequest(updated.error));
+                        }
+                        else{
+                            reply(updated);
+                        }
+                    });
+                }
+            });
+        }
+    }
+},
+{
+    method: 'DELETE',
+    path: '/admin/officer/delete/{id}',
+    config: {
+        validate: {
+            params: {
+                id: Joi.string().length(24).required()
+            }
+        },
+        handler: function(request, reply){
+            jwt.processRequest(request, function(token){
+                if(token == null){
+                    reply.redirect('/NotAuthorized');
+                }
+                else{
+                    Officers.remove(request.params.id, function(result){
+                        if(result.error){
+                            //error, so 404
+                            return reply(boom.badRequest(result.error));
+                        }
+                        else{
+                            reply(result);
+                        }
+                    });
+                }
+            });
+        }
+    }
+}
+];

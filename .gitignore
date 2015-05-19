@@ -16,6 +16,9 @@
 #node
 [Nn]ode_modules
 
+#config file so credentials are not saved.
+config/config.js
+
 # Precompiled Headers
 *.gch
 *.pch

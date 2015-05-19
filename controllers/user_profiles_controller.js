@@ -5,13 +5,11 @@ function getUserProfile(userId, callback){
        if(!err && user != null){
            db.Officer.findOne({userId: user._id}, function(error, officer){
                if(officer){
-                   console.log(officer);
                    var profile = {
                        isLoggedIn: true,
                        isAdmin: user.isAdmin,
                        profile: {
                            username: user.username,
-                           email: user.email,
                            bio: officer.bio == "" ? "" : officer.bio,
                            position: officer.position
                        }
@@ -28,7 +26,6 @@ function getUserProfile(userId, callback){
        }
    });
 }
-
 module.exports = {
 	fetch: getUserProfile
 };

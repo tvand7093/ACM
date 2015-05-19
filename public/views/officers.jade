@@ -9,30 +9,32 @@ block body
       br
   div.row.centered
     .col-lg-6
-      img.img-circle.img-thumbnail(src='http://www.gravatar.com/avatar/f24777df33c08e6ffd6ef6bc0d4b2619.png')
-      h3 #{name}
-      h4 - #{position} -
-      p #{bio}
+      img.img-circle.img-thumbnail(src=cabinet.president.user.imageUrl)
+      h3 #{cabinet.president.user.username}
+      h4 - #{cabinet.president.position} -
+      p #{cabinet.president.bio}
         
     .col-lg-6
-      h3 Kyle Nosar
-      h4 - Vice President -
-      p Kyle is a person, doing stuff. Like hockey stuff. And Game of Thrones...
+      img.img-circle.img-thumbnail(src=cabinet.vicePresident.user.imageUrl)
+      h3 #{cabinet.vicePresident.user.username}
+      h4 - #{cabinet.vicePresident.position} -
+      p #{cabinet.vicePresident.bio}
   div.row
     .col-lg-12
       br
   div.row.centered
     .col-lg-4
-      img.img-circle.img-thumbnail(src="https://d1nrm4vx8nf098.cloudfront.net/o9003nf9sxfpaxy_64.jpg")
-      h3 Sunnya Sisler
-      h4 - Treasurer -
-      p Sunnya does some treasurer stuff.
+      img.img-circle.img-thumbnail(src=cabinet.treasurer.user.imageUrl)
+      h3 #{cabinet.treasurer.user.username}
+      h4 - #{cabinet.treasurer.position} -
+      p #{cabinet.treasurer.bio}
     .col-lg-4
-      h3 Jonathan Wamback 
-      h4 - Secretary -
-      p Jonathan does stuff as well.
+      img.img-circle.img-thumbnail(src=cabinet.secretary.user.imageUrl)
+      h3 #{cabinet.secretary.user.username}
+      h4 - #{cabinet.secretary.position} -
+      p #{cabinet.secretary.bio}
     .col-lg-4
-      img.img-circle.img-thumbnail(src='http://www.gravatar.com/avatar/e3e26bc7caf5708ce92b1bbf2025990d.png')
-      h3 Matt Burris
-      h4 - Secretary (Outreach) -
-      p Matt does some outreach stuff...
+      img.img-circle.img-thumbnail(src=cabinet.outreach.user.imageUrl)
+      h3 #{cabinet.outreach.user.username}
+      h4 - #{cabinet.outreach.position} -
+      p #{cabinet.outreach.bio}

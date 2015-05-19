@@ -48,14 +48,13 @@ server.views({
 //ensures that the admin account is created prior to running the website.
 function ensureAdmin(){
     database.startDB(function(db){
-        db.User.findOne({enabled: true, isSysAdmin: true, isAdmin: true, username: config.defaultAdmin.username}, function(err, result){
+        db.User.findOne({isAdmin: true, email: config.defaultAdmin.email}, function(err, result){
           //look for admin, if not found, create!
           if(result == null){
             var admin = new db.User({
               username: config.defaultAdmin.username,
-              enabled: true,
-              isSysAdmin: true,
               isAdmin: true,
+              imageUrl: "<no image>",
               email: config.defaultAdmin.email,
               password: config.defaultAdmin.password
             });

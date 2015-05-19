@@ -1,11 +1,9 @@
+var Officers = require('../controllers/officers_controller');
+
 function getOfficers(request, reply){
-	reply([
-        {name: "Tyler Vanderhoef", position: "President"},
-        {name: "Kyle Nosar", position: "Vice President"},
-        {name: "Sunnya Sisler", position: "Treasurer"},
-        {name: "Jonathan Wambach", position: "Secretary"},
-        {name: "Matt Burris", position: "Secretary (Outreach)"}
-    ]);
+    Officers.fetchCabinet(function(cabinet){
+        reply(cabinet);
+    });
 }
 
 module.exports= [{

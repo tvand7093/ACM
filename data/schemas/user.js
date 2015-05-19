@@ -1,23 +1,26 @@
 //Source: http://stackoverflow.com/questions/14588032/mongoose-password-hashing
+//https://github.com/emerleite/node-gravatar used for populating imageUrl property.
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt'),
+    gravatar = require('gravatar'),
     SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-    username: { type: String, required: true, index: { unique: true } },
-    password: { type: String, required: true },
-	email: { type: String, required: true },
-	enabled: { type: Boolean, required: true },
-	isSysAdmin: { type: Boolean, required: true },
+    username: { type: String, required: true},
+    password: { type: String },
+	email: { type: String, required: true, index: { unique: true } },
+    imageUrl: { type: String, required: true },
     isAdmin: { type: Boolean, required: true }
 });
 
-
 UserSchema.pre('save', function(next) {
     var user = this;
-
+    
+    //save gravatar image url.
+    user.imageUrl = gravatar.url(user.email);
+    
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
 
@@ -37,6 +40,9 @@ UserSchema.pre('save', function(next) {
 });
 
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+    if(this.password == '' || this.password == null)
+        cb(null, false);
+        
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
