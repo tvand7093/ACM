@@ -1,0 +1,40 @@
+extends ./layout.jade
+
+block title
+    title ACM Officers
+
+block body
+  div.row
+    .col-lg-12
+      br
+  div.row.centered
+    .col-lg-6
+      img.img-circle.img-thumbnail(src=cabinet.president.user.imageUrl)
+      h3 #{cabinet.president.user.username}
+      h4 - #{cabinet.president.position} -
+      p #{cabinet.president.bio}
+        
+    .col-lg-6
+      img.img-circle.img-thumbnail(src=cabinet.vicePresident.user.imageUrl)
+      h3 #{cabinet.vicePresident.user.username}
+      h4 - #{cabinet.vicePresident.position} -
+      p #{cabinet.vicePresident.bio}
+  div.row
+    .col-lg-12
+      br
+  div.row.centered
+    .col-lg-4
+      img.img-circle.img-thumbnail(src=cabinet.treasurer.user.imageUrl)
+      h3 #{cabinet.treasurer.user.username}
+      h4 - #{cabinet.treasurer.position} -
+      p #{cabinet.treasurer.bio}
+    .col-lg-4
+      img.img-circle.img-thumbnail(src=cabinet.secretary.user.imageUrl)
+      h3 #{cabinet.secretary.user.username}
+      h4 - #{cabinet.secretary.position} -
+      p #{cabinet.secretary.bio}
+    .col-lg-4
+      img.img-circle.img-thumbnail(src=cabinet.outreach.user.imageUrl)
+      h3 #{cabinet.outreach.user.username}
+      h4 - #{cabinet.outreach.position} -
+      p #{cabinet.outreach.bio}

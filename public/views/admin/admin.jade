@@ -1,0 +1,21 @@
+extends ../layout.jade
+
+block title
+    script(src='../public/scripts/admin.js')
+    title ACM Admin
+
+block body
+    div.row
+        .admin-tabs
+            div(role='tabpanel')
+                ul.nav.nav-tabs(role='tablist')
+                    li.active(role='presentation')
+                        a(href='#officers', data-toggle='tab', role='tab', aria-controls='officers') Manage Officers
+                    li(role='presentation')
+                        a(href='#events', data-toggle='tab', role='tab', aria-controls='events') Manage Events
+                        
+                 div.tab-content.bordered-content
+                     div#officers.tab-pane.fade.in.active(role='tabpanel')
+                            include ./officers/index.jade
+                     div#events.tab-pane.fade(role='tabpanel')
+                         p FINALLY!!!

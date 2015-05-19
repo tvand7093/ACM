@@ -1,0 +1,57 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    <!-- Latest compiled and minified CSS -->
+    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', href='public/css/justified-navbar.css')
+    script(src='https://code.jquery.com/jquery-2.1.4.min.js')
+    script(src='/public/scripts/layout.js')
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+    block title
+   
+  body
+    div.container
+      div.navbar-header
+        h3.text-muted ACM at Washington State University Vancouver
+      div.navbar-collapse.collapse
+        if !isLoggedIn
+          form.navbar-form.navbar-right(name="login", action="/login", method="post")
+            div.form-group
+              input.form-control(type="text", placeholder='Email', name="email")
+            div.form-group
+              input.form-control(type="password", placeholder='Password', name="password")
+            button.btn.btn-success(type='submit') Sign In
+        else
+          form.navbar-form.navbar-right(action='/logout', method='post')
+            button.btn.btn-success.navbar-right(type='submit') Sign Out
+          
+        
+        
+    div.container
+        nav
+          ul#main-navbar.nav.nav-justified
+            li
+              a(href='/') Home
+            li
+              a(href='/officers') Officers
+            li
+              a(href='#') Events
+            li
+              a(href='#') Why we are awesome
+            if isLoggedIn
+              li
+                a(href='/admin') Admin
+              
+        block body
+        
+        footer.footer
+          div.col.lg-12
+            .col-lg-4
+              p © Xamandor 2015
+            .col-lg-4
+              a(href='/documentation') API Docs
+          

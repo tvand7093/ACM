@@ -1,0 +1,22 @@
+h3.col-md-12 Current Officers
+
+div.row
+	.col-md-12
+		table.table.table-hover
+			thead
+				tr
+					th Name
+					th Position
+					th Email
+					th Bio
+			tbody
+				each officer in settings.officers
+					tr.hover(id=officer.id)
+						td.col-md-2(scope='row') #{officer.user.username}
+						td.col-md-2 #{officer.position}
+						td.col-md-2 #{officer.user.email}
+						td.col-md-5 #{officer.bio}
+						td.col-md-1 
+							a.delete-user(href='#')
+								span.glyphicon.glyphicon-trash
+							
