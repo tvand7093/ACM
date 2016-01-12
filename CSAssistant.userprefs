@@ -1,16 +1,6 @@
 ﻿<Properties StartupItem="iOS/CSAssistant.iOS.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CSAssistant/ViewModels/CourseViewModel.cs">
-    <Files>
-      <File FileName="CSAssistant/Pages/ProfessorHomePage.xaml" Line="1" Column="1" />
-      <File FileName="CSAssistant/Services/CourseService.cs" Line="1" Column="1" />
-      <File FileName="CSAssistant/ViewModels/ProfessorHomePageVM.cs" Line="1" Column="1" />
-      <File FileName="CSAssistant/ViewModels/BaseViewModel.cs" Line="1" Column="1" />
-      <File FileName="CSAssistant/Pages/RootTabs.cs" Line="20" Column="1" />
-      <File FileName="CSAssistant/ViewModels/AssignmentViewModel.cs" Line="1" Column="1" />
-      <File FileName="CSAssistant/ViewModels/CourseViewModel.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/tylervanderhoef/Documents/Github/ACM/CSAssistant/CSAssistant/Services/ClassService.cs" line="39" column="1" />

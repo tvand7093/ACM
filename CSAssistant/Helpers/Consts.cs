@@ -16,7 +16,7 @@ namespace CSAssistant.Helpers
 
 	internal static class ProfessorPages {
 		public const string LangsWebsite = "http://lang.encs.vancouver.wsu.edu";
-		public const string CochransWebsite = "http://ezekiel.vancouver.wsu.edu";
+		public const string CochransWebsite = "https://ezekiel.encs.vancouver.wsu.edu";
 	}
 
 }

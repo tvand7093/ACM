@@ -13,7 +13,7 @@ namespace CSAssistant.Services
 {
 	internal static class CourseService
 	{
-		const string LangsAssignmentsRegex = @"<a href=""([Aa|Ff].*)"">([Aa|Ff].*)</a>";
+		const string LangsAssignmentsRegex = @"<a href=""([Aa|Ff].*)"">(.*)</a>";
 		const string CochransAssignmentsRegex = @"<a.*href=""projects(.*)"">\[PDF\](.*)[^\r\n+]?";
 
 		public static void GetAssignments(string url, string messageToEmit, Professor prof){
